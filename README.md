@@ -1,27 +1,26 @@
-# EA Foods Pre-Order System
+# Application
+PORT=3000
+NODE_ENV=development
 
-A backend system for managing pre-orders with inventory control and delivery scheduling.
+# Database (for SQLite - using local file)
+DATABASE_URL=./db/eafoods.sqlite
 
-## Features
+# App settings
+ORDER_CUTOFF_HOUR=18           # 6 PM cut-off for next-day orders
+MORNING_SLOT=08:00-11:00
+AFTERNOON_SLOT=12:00-15:00
+EVENING_SLOT=16:00-19:00
 
-- Pre-order management with inventory validation
-- Delivery slot scheduling with cut-off time enforcement
-- Stock management with update history
-- User authentication and authorization
-- Comprehensive API with validation
-- Idempotent order creation
-- Automated delivery date calculation
+# Ops stock update times
+STOCK_UPDATE_MORNING=08:00
+STOCK_UPDATE_EVENING=18:00
 
-## Setup Instructions
+# Timezone
+TIMEZONE=Africa/Nairobi
 
-### Prerequisites
+# Seed Data
+SEED_PRODUCT_COUNT=10
+SEED_USER_COUNT=5
 
-- Node.js (v14 or higher)
-- npm or yarn
-
-### Installation
-
-1. Clone the repository
-2. Install dependencies:
-   ```bash
-   npm install
+# Logging
+LOG_LEVEL=debug
