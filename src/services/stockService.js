@@ -1,7 +1,6 @@
 import { Product, StockUpdate } from '../models/index.js';
 import { Op } from 'sequelize';
 
-// Get stock update history
 export async function getStockHistory(filters = {}, page = 1, limit = 10) {
   const whereClause = {};
 
@@ -42,7 +41,6 @@ export async function getStockHistory(filters = {}, page = 1, limit = 10) {
   };
 }
 
-// Bulk update stock for multiple products
 export async function bulkUpdateStock(updates, updatedBy = 'OPS_MANAGER') {
   const results = [];
 
@@ -95,7 +93,6 @@ export async function bulkUpdateStock(updates, updatedBy = 'OPS_MANAGER') {
   return results;
 }
 
-// Get current stock levels
 export async function getCurrentStockLevels(filters = {}) {
   const whereClause = {};
 
@@ -121,7 +118,6 @@ export async function getCurrentStockLevels(filters = {}) {
   });
 }
 
-// Default export object for easier import
 export default {
   getStockHistory,
   bulkUpdateStock,

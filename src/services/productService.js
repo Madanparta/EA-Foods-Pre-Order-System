@@ -1,7 +1,6 @@
 import { Product, StockUpdate } from '../models/index.js';
 import { Op } from 'sequelize';
 
-// Get all products with optional filtering and pagination
 export async function getAllProducts(filters = {}, page = 1, limit = 10) {
   const whereClause = {};
 

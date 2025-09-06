@@ -2,7 +2,6 @@ import Joi from 'joi';
 import { isValidDeliverySlot } from '../utils/helpers.js';
 import { USER_TYPES } from '../utils/constants.js';
 
-// Order validation schema
 const orderSchema = Joi.object({
   customerName: Joi.string().min(1).max(100).required(),
   customerType: Joi.string().valid(...Object.values(USER_TYPES)).default('CUSTOMER'),
@@ -17,7 +16,6 @@ const orderSchema = Joi.object({
   orderDate: Joi.date().optional(),
 });
 
-// Product validation schema
 const productSchema = Joi.object({
   name: Joi.string().min(1).max(255).required(),
   description: Joi.string().max(1000).optional().allow(''),
@@ -28,17 +26,14 @@ const productSchema = Joi.object({
   isActive: Joi.boolean().default(true),
 });
 
-// Stock update validation schema
 const stockUpdateSchema = Joi.object({
   productId: Joi.number().integer().positive().required(),
   stock: Joi.number().integer().min(0).required(),
   notes: Joi.string().max(500).optional().allow(''),
 });
 
-// Bulk stock update validation schema
 const bulkStockUpdateSchema = Joi.array().items(stockUpdateSchema).min(1);
 
-// Query parameters validation schema
 const querySchema = Joi.object({
   page: Joi.number().integer().positive().default(1),
   limit: Joi.number().integer().positive().max(100).default(10),
@@ -83,7 +78,6 @@ const validate = (schema) => {
   };
 };
 
-// Export validators
 export const validateOrder = validate(orderSchema);
 export const validateProduct = validate(productSchema);
 export const validateStockUpdate = validate(stockUpdateSchema);

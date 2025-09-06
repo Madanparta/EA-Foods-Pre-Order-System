@@ -1,7 +1,6 @@
 import stockService from '../services/stockService.js';
 import productService from '../services/productService.js';
 
-// Get stock history
 export async function getStockHistory(req, res, next) {
   try {
     const result = await stockService.getStockHistory(req.query, req.query.page, req.query.limit);
@@ -11,7 +10,6 @@ export async function getStockHistory(req, res, next) {
   }
 }
 
-// Update stock for a product
 export async function updateStock(req, res, next) {
   try {
     const { productId } = req.params;
@@ -34,7 +32,6 @@ export async function updateStock(req, res, next) {
   }
 }
 
-// Bulk update stock for multiple products
 export async function bulkUpdateStock(req, res, next) {
   try {
     const results = await stockService.bulkUpdateStock(req.body, req.user.name);
@@ -48,7 +45,6 @@ export async function bulkUpdateStock(req, res, next) {
   }
 }
 
-// Get current stock levels
 export async function getCurrentStock(req, res, next) {
   try {
     const products = await stockService.getCurrentStockLevels(req.query);

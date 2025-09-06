@@ -1,10 +1,15 @@
 import { Product, syncDatabase } from '../models/index.js';
+import { fileURLToPath } from 'url';
+import path from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+
+const isDirectlyExecuted = path.resolve(process.argv[1]) === path.resolve(__filename);
 
 async function seedData() {
   try {
     await syncDatabase();
-    
-    // Sample products data
+
     const products = [
       {
         name: 'Organic Whole Milk',
@@ -97,13 +102,12 @@ async function seedData() {
         isActive: true,
       },
     ];
-    
-    // Create products
+
     for (const productData of products) {
+      console.log(`Seeding product: ${productData.name}`);
       await Product.create(productData);
     }
-    
-    console.log('Database seeded successfully with 10 products');
+
     process.exit(0);
   } catch (error) {
     console.error('Error seeding database:', error);
@@ -111,8 +115,7 @@ async function seedData() {
   }
 }
 
-// Run seeder if called directly
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (isDirectlyExecuted) {
   seedData();
 }
 

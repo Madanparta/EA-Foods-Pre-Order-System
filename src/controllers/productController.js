@@ -1,6 +1,5 @@
 import productService from '../services/productService.js';
 
-// Get all products
 export async function getProducts(req, res, next) {
   try {
     const result = await productService.getAllProducts(req.query, req.query.page, req.query.limit);
@@ -10,7 +9,6 @@ export async function getProducts(req, res, next) {
   }
 }
 
-// Get product by ID
 export async function getProduct(req, res, next) {
   try {
     const { id } = req.params;
@@ -26,7 +24,6 @@ export async function getProduct(req, res, next) {
   }
 }
 
-// Get low stock products
 export async function getLowStockProducts(req, res, next) {
   try {
     const threshold = req.query.threshold || 10;

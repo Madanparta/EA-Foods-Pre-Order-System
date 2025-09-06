@@ -5,7 +5,6 @@ import {
   getIdempotencyResponse,
 } from '../utils/idempotency.js';
 
-// Create a new order
 export async function createOrder(req, res, next) {
   try {
     const idempotencyKey = req.headers['idempotency-key'];

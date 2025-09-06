@@ -3,7 +3,6 @@ import { calculateDeliveryDate, formatDate } from '../utils/helpers.js';
 import { ORDER_STATUS } from '../utils/constants.js';
 import { Op } from 'sequelize';
 
-// Create a new order
 export async function createOrder(orderData, idempotencyKey = null) {
   const {
     customerName,
@@ -14,7 +13,7 @@ export async function createOrder(orderData, idempotencyKey = null) {
     orderDate = new Date(),
   } = orderData;
 
-  const product = await Product.findByPk(productId);
+  const product = await Product.findById(productId);
 
   if (!product) throw new Error('Product not found');
   if (!product.isActive) throw new Error('Product is not available');
@@ -55,7 +54,6 @@ export async function createOrder(orderData, idempotencyKey = null) {
   return order;
 }
 
-// Get order by ID
 export async function getOrderById(id) {
   return await Order.findByPk(id, {
     include: [{
@@ -65,7 +63,6 @@ export async function getOrderById(id) {
   });
 }
 
-// Get order by order ID
 export async function getOrderByOrderId(orderId) {
   return await Order.findOne({
     where: { orderId },
@@ -76,7 +73,6 @@ export async function getOrderByOrderId(orderId) {
   });
 }
 
-// Get all orders with filtering and pagination
 export async function getAllOrders(filters = {}, page = 1, limit = 10) {
   const whereClause = {};
 
@@ -119,7 +115,6 @@ export async function getAllOrders(filters = {}, page = 1, limit = 10) {
   };
 }
 
-// Cancel an order
 export async function cancelOrder(orderId) {
   const order = await Order.findOne({ where: { orderId } });
 
@@ -148,7 +143,6 @@ export async function cancelOrder(orderId) {
   return order;
 }
 
-// Get orders by delivery date
 export async function getOrdersByDeliveryDate(deliveryDate) {
   return await Order.findAll({
     where: {
@@ -163,7 +157,6 @@ export async function getOrdersByDeliveryDate(deliveryDate) {
   });
 }
 
-// Get daily order summary
 export async function getDailyOrderSummary(date = new Date()) {
   const formattedDate = formatDate(date);
 
@@ -215,7 +208,7 @@ export async function getDailyOrderSummary(date = new Date()) {
   return summary;
 }
 
-// Default export object for easier import
+
 export default {
   createOrder,
   getOrderById,
