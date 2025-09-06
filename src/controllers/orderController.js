@@ -29,8 +29,11 @@ export async function createOrder(req, res, next) {
       message: 'Order created successfully',
       data: order,
     });
-  } catch (error) {
-    next(error);
+    } catch (error) {
+      res.status(error.status || 500).json({
+        status: error.status || 500,
+        error: error.message || 'Internal Server Error',
+      });
   }
 }
 
@@ -48,8 +51,11 @@ export async function getOrder(req, res, next) {
       message: 'Order fetched successfully',
       data: order,
     });
-  } catch (error) {
-    next(error);
+    } catch (error) {
+      res.status(error.status || 500).json({
+        status: error.status || 500,
+        error: error.message || 'Internal Server Error',
+      });
   }
 }
 
@@ -67,8 +73,11 @@ export async function getOrderByOrderId(req, res, next) {
       message: 'Order fetched successfully by Order ID',
       data: order,
     });
-  } catch (error) {
-    next(error);
+    } catch (error) {
+      res.status(error.status || 500).json({
+        status: error.status || 500,
+        error: error.message || 'Internal Server Error',
+      });
   }
 }
 
@@ -81,8 +90,11 @@ export async function getOrders(req, res, next) {
       message: 'Orders fetched successfully',
       data: result,
     });
-  } catch (error) {
-    next(error);
+    } catch (error) {
+      res.status(error.status || 500).json({
+        status: error.status || 500,
+        error: error.message || 'Internal Server Error',
+      });
   }
 }
 
@@ -96,8 +108,11 @@ export async function cancelOrder(req, res, next) {
       message: 'Order cancelled successfully',
       data: order,
     });
-  } catch (error) {
-    next(error);
+    } catch (error) {
+      res.status(error.status || 500).json({
+        status: error.status || 500,
+        error: error.message || 'Internal Server Error',
+      });
   }
 }
 
@@ -115,8 +130,11 @@ export async function getOrdersByDeliveryDate(req, res, next) {
         orders,
       },
     });
-  } catch (error) {
-    next(error);
+    } catch (error) {
+      res.status(error.status || 500).json({
+        status: error.status || 500,
+        error: error.message || 'Internal Server Error',
+      });
   }
 }
 
@@ -130,7 +148,10 @@ export async function getDailySummary(req, res, next) {
       message: 'Daily summary fetched successfully',
       data: summary,
     });
-  } catch (error) {
-    next(error);
+    } catch (error) {
+      res.status(error.status || 500).json({
+        status: error.status || 500,
+        error: error.message || 'Internal Server Error',
+      });
   }
 }

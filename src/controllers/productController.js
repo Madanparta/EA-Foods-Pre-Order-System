@@ -9,8 +9,11 @@ export async function getProducts(req, res, next) {
       message: 'Products fetched successfully',
       data: result,
     });
-  } catch (error) {
-    next(error);
+    } catch (error) {
+      res.status(error.status || 500).json({
+        status: error.status || 500,
+        error: error.message || 'Internal Server Error',
+      });
   }
 }
 
@@ -31,8 +34,11 @@ export async function getProduct(req, res, next) {
       message: 'Product fetched successfully',
       data: product,
     });
-  } catch (error) {
-    next(error);
+    } catch (error) {
+      res.status(error.status || 500).json({
+        status: error.status || 500,
+        error: error.message || 'Internal Server Error',
+      });
   }
 }
 
@@ -50,7 +56,10 @@ export async function getLowStockProducts(req, res, next) {
         products,
       },
     });
-  } catch (error) {
-    next(error);
+    } catch (error) {
+      res.status(error.status || 500).json({
+        status: error.status || 500,
+        error: error.message || 'Internal Server Error',
+      });
   }
 }

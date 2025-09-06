@@ -10,8 +10,11 @@ export async function getStockHistory(req, res, next) {
       message: 'Stock history fetched successfully',
       data: result,
     });
-  } catch (error) {
-    next(error);
+    } catch (error) {
+      res.status(error.status || 500).json({
+        status: error.status || 500,
+        error: error.message || 'Internal Server Error',
+      });
   }
 }
 
@@ -33,8 +36,11 @@ export async function updateStock(req, res, next) {
       message: 'Stock updated successfully',
       data: product,
     });
-  } catch (error) {
-    next(error);
+    } catch (error) {
+      res.status(error.status || 500).json({
+        status: error.status || 500,
+        error: error.message || 'Internal Server Error',
+      });
   }
 }
 
@@ -47,8 +53,11 @@ export async function bulkUpdateStock(req, res, next) {
       message: 'Bulk stock update completed successfully',
       data: results,
     });
-  } catch (error) {
-    next(error);
+    } catch (error) {
+      res.status(error.status || 500).json({
+        status: error.status || 500,
+        error: error.message || 'Internal Server Error',
+      });
   }
 }
 
@@ -64,7 +73,10 @@ export async function getCurrentStock(req, res, next) {
         products,
       },
     });
-  } catch (error) {
-    next(error);
+    } catch (error) {
+      res.status(error.status || 500).json({
+        status: error.status || 500,
+        error: error.message || 'Internal Server Error',
+      });
   }
 }
