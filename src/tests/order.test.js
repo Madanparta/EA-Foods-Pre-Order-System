@@ -36,7 +36,6 @@ describe("Order API - Stock check", () => {
 
     const orderId = orderRes.body.order.orderId;
 
-    // Cancel it
     const cancelRes = await request(app).patch(`/api/orders/cancel/${orderId}`);
     expect(cancelRes.status).toBe(200);
     expect(cancelRes.body.order.status).toBe("CANCELLED");

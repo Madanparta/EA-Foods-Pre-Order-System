@@ -13,7 +13,7 @@ export async function createOrder(orderData, idempotencyKey = null) {
     orderDate = new Date(),
   } = orderData;
 
-  const product = await Product.findById(productId);
+  const product = await Product.findByPk(productId);
 
   if (!product) throw new Error('Product not found');
   if (!product.isActive) throw new Error('Product is not available');

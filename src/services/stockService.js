@@ -60,11 +60,9 @@ export async function bulkUpdateStock(updates, updatedBy = 'OPS_MANAGER') {
       const previousStock = product.currentStock;
       const newStock = update.stock;
 
-      // Update product stock
       product.currentStock = newStock;
       await product.save();
 
-      // Record stock update
       await StockUpdate.create({
         productId: update.productId,
         previousStock,
